@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gif="http://schemas.android.com/apk/res/com.example.ble_beacon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/beacon_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <ListView
+            android:id="@+id/device_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="2"
+            android:visibility="invisible" >
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1.5"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:orientation="vertical" >
+
+            <com.example.ble_beacon.TypegifView
+                android:id="@+id/gifView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                gif:delay="1"
+                gif:src="@raw/search"
+                gif:stop="false" >
+
+            </com.example.ble_beacon.TypegifView>
+
+            <com.example.ble_beacon.TypegifView
+                android:id="@+id/gifView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                gif:delay="1"
+                gif:src="@raw/search"
+                gif:stop="false" >
+
+            </com.example.ble_beacon.TypegifView>
+
+        </LinearLayout>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1.5"
+            android:gravity="bottom|center_horizontal" >
+
+            <TextView
+                android:id="@+id/cut_find_tv1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/find_but_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/cut_find_tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/find_but"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/block"
+                    android:onClick="RESCAN"
+                    android:text="找問卷" />
+
+                <TextView
+                    android:id="@+id/cut_find_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/cut_find_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:visibility="invisible" />
+        </TableRow>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Questionnaire_background_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/question_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/title_background_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/bg2"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/title_background_cut1_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.2"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/imageButton_background_concel_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_cancel__background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:background="@drawable/cancel" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ImageView02"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_weight="1.5"
+                android:src="@drawable/icon_imwaffle" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:text="IM Waffle 顧客意向調查"
+                android:textSize="@dimen/activity_horizontal_margin" />
+
+            <LinearLayout
+                android:id="@+id/title_background_cut2_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/question_background_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/top_background_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/top_background_cut1_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6.5"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/backgroung_next_back_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5.3"
+                    android:orientation="horizontal" >
+
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_last"
+                        android:src="@android:drawable/divider_horizontal_dark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_next"
+                        android:src="@android:drawable/divider_horizontal_dark" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/top_background_cut2_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6.5"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/question_cut_background_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/question_background_icon_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7" >
+
+                        <LinearLayout
+                            android:id="@+id/question_background_cut1_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/ImageView01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:src="@drawable/icon_question" />
+
+                        <LinearLayout
+                            android:id="@+id/question_background_cut2_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/question_background_tv_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5" >
+
+                        <TextView
+                            android:id="@+id/question_background_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="題目:"
+                            android:textSize="23sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/choose_button_background_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/background_button_cut1_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/background_button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/background_choose1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/block"
+                        android:text="choose1" />
+
+                    <Button
+                        android:id="@+id/background_choose2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/block"
+                        android:text="choose2" />
+
+                    <Button
+                        android:id="@+id/background_choose3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/block"
+                        android:text="choose3" />
+
+                    <Button
+                        android:id="@+id/background_choose4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/block"
+                        android:text="choose4" />
+
+                    <Button
+                        android:id="@+id/background_choose5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/block"
+                        android:text="choose5" />
+
+                    <Button
+                        android:id="@+id/background_choose6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/block"
+                        android:text="choose6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/background_button_cut2_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="0dip"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/Questionnaire_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/question_background"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/bg2"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/title_cut1_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.2"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/imageButton_concel_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/button_cancel"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@drawable/cancel"
+                            android:onClick="exit" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_weight="1.5"
+                    android:src="@drawable/icon_imwaffle" />
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="2.5"
+                    android:gravity="center"
+                    android:text="IM Waffle  顧客意向調查"
+                    android:textSize="@dimen/activity_horizontal_margin" />
+
+                <LinearLayout
+                    android:id="@+id/title_cut2_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/question_cut_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/top_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/top_cut1_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6.5"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/action_settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5.3"
+                        android:orientation="horizontal" >
+
+                        <ImageButton
+                            android:id="@+id/back_imbut"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_last"
+                            android:onClick="back_imbut"
+                            android:src="@android:drawable/divider_horizontal_dark"
+                            android:visibility="invisible" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:id="@+id/next_imbut"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_next"
+                            android:onClick="next_imbut"
+                            android:src="@android:drawable/divider_horizontal_dark"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/top_cut2_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6.5"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/question_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:id="@+id/question_icon_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:orientation="horizontal" >
+
+                            <LinearLayout
+                                android:id="@+id/question_cut1_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:src="@drawable/icon_question" />
+
+                            <LinearLayout
+                                android:id="@+id/question_cut2_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/question_tv_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5" >
+
+                            <TextView
+                                android:id="@+id/question_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="題目:"
+                                android:textSize="23sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="9"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/choose_button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/button_cut1_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/button_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/choose1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/block"
+                            android:onClick="choose1"
+                            android:text="choose1" />
+
+                        <Button
+                            android:id="@+id/choose2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/block"
+                            android:onClick="choose2"
+                            android:text="choose2" />
+
+                        <Button
+                            android:id="@+id/choose3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/block"
+                            android:onClick="choose3"
+                            android:text="choose3" />
+
+                        <Button
+                            android:id="@+id/choose4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/block"
+                            android:onClick="choose4"
+                            android:text="choose4" />
+
+                        <Button
+                            android:id="@+id/choose5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/block"
+                            android:onClick="choose5"
+                            android:text="choose5" />
+
+                        <Button
+                            android:id="@+id/choose6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/block"
+                            android:onClick="choose6"
+                            android:text="choose6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/button_cut2_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ViewFlipper>
+
+</RelativeLayout>
