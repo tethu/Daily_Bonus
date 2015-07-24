@@ -72,7 +72,6 @@ public class TypegifView extends View implements Runnable {
 	}
 
 	public void setSrc(int id) {
-		
 		gHelper = new gifOpenHelper();
 		gHelper.read(TypegifView.this.getResources().openRawResource(id));
 		bmp = gHelper.getImage();

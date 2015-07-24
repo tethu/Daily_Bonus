@@ -1,4 +1,4 @@
- package com.example.ble_beacon;
+package com.example.ble_beacon;
 
 import static com.example.ble_beacon.DbConstants.COMPANY_NAME;
 import static com.example.ble_beacon.DbConstants.DATA;
@@ -64,6 +64,9 @@ import android.widget.ViewFlipper;
 
 public class Scan_beacon extends Activity {
 	String company[] = { "無公司", "IM Waffle", "清心" };
+
+	boolean down_state = false;
+
 	/*************************** MYSQL & WEB ***************************/
 	final String URL = "http://healthifenas.synology.me/php_web/beacon/android/beacon.php";// 要加上"http://"，否則會連線失敗
 	final String URL_ans = "http://healthifenas.synology.me/php_web/beacon/android/result_question_answer.php";// 要加上"http://"
@@ -90,7 +93,7 @@ public class Scan_beacon extends Activity {
 	Button background_choose_but3;
 	Button background_choose_but4;
 	Button background_choose_but5;
-	private TypegifView view;
+	private TypegifView typegifview;
 	File dir_Internal;
 	Context context;
 	Runnable SCAN_BLE_Device;
@@ -205,28 +208,27 @@ public class Scan_beacon extends Activity {
 			}
 			devic_listview.setVisibility(View.INVISIBLE);
 			set_gif_init(true);
-			view.setStart(R.raw.search);
+			typegifview.setSrc(R.drawable.search);
+			typegifview.setStart(R.raw.search);
 		}
 		choose_button_set();
 	}
 
 	boolean scan_state = true;
 
-	public void set_gif_init(boolean flag){
+	public void set_gif_init(boolean flag) {
 		TypegifView view_back = (TypegifView) findViewById(R.id.gifView1);
-		if(flag){
-			view.setVisibility(View.VISIBLE);
+		if (flag) {
+			typegifview.setVisibility(View.VISIBLE);
 			view_back.setVisibility(View.GONE);
-		}
-		else{
-			view.setVisibility(View.GONE);
+		} else {
+			typegifview.setVisibility(View.GONE);
 			view_back.setVisibility(View.VISIBLE);
 		}
 	}
-	
-	
+
 	public void basic_set() {
-		view = (TypegifView) findViewById(R.id.gifView);
+		typegifview = (TypegifView) findViewById(R.id.gifView);
 		find = (Button) findViewById(R.id.find_but);
 		vf = (ViewFlipper) findViewById(R.id.view_flipper);
 		title_background_layout = (LinearLayout) findViewById(R.id.title_background_layout);
@@ -321,19 +323,15 @@ public class Scan_beacon extends Activity {
 		boolean jump_flag = false;
 		int flag = 0;
 		question_ans[now_question] = user_answer[question_in - 1];
-		
-		Log.d("question_now", 
-				"1:"+view_state
-				+"\n2:"+question_array[question_array_flag]
-				+"\n3:"+question_array_flag
-				+"\n4:"+question_math
-				+"\n5:"+Question_Data[now_question + 1]
-				+"\n6:"+now_write_question
-				+"\n7:"+now_question);
-		
-		if (view_state == 0
-				&& (choose_but_in[now_question] == 0)) {
-			
+
+		Log.d("question_now", "1:" + view_state + "\n2:"
+				+ question_array[question_array_flag] + "\n3:"
+				+ question_array_flag + "\n4:" + question_math + "\n5:"
+				+ Question_Data[now_question + 1] + "\n6:" + now_write_question
+				+ "\n7:" + now_question);
+
+		if (view_state == 0 && (choose_but_in[now_question] == 0)) {
+
 			choose_but_in[now_question] = question_in;
 			Log.d("question_error", "5");
 			if (Question_Data[now_question + 1].length() != 0
@@ -405,7 +403,7 @@ public class Scan_beacon extends Activity {
 
 				view_state--;
 				if (jump_flag) {
-					view_state=0;
+					view_state = 0;
 					now_question = now_question
 							+ jump_question[flag][question_in];
 					now_write_question = now_write_question
@@ -426,7 +424,6 @@ public class Scan_beacon extends Activity {
 							flag_choose = choose_but_in[question_array[question_array_flag - 1]];
 						}
 					}
-
 
 					if (flag_jump) {
 						button_in(now_question
@@ -593,10 +590,10 @@ public class Scan_beacon extends Activity {
 				question_now(i);
 
 			if ((choose_but_in[now_question] == 0)) {
-				view_state=0;
+				view_state = 0;
 				background_next_imbut.setVisibility(View.INVISIBLE);
 				next_imbut.setVisibility(View.INVISIBLE);
-			}else{
+			} else {
 				background_next_imbut.setVisibility(View.VISIBLE);
 				next_imbut.setVisibility(View.VISIBLE);
 			}
@@ -743,7 +740,7 @@ public class Scan_beacon extends Activity {
 				}
 
 				question_array_flag++;
-				if(view_state>0)
+				if (view_state > 0)
 					view_state--;
 				button_set(choose_length[now_question], now_question);
 				question.setText(Question_Data[now_question]);
@@ -761,8 +758,8 @@ public class Scan_beacon extends Activity {
 		if ((choose_but_in[now_question] == 0)) {
 			background_next_imbut.setVisibility(View.INVISIBLE);
 			next_imbut.setVisibility(View.INVISIBLE);
-			view_state=0;
-		}else{
+			view_state = 0;
+		} else {
 			background_next_imbut.setVisibility(View.VISIBLE);
 			next_imbut.setVisibility(View.VISIBLE);
 		}
@@ -772,9 +769,7 @@ public class Scan_beacon extends Activity {
 	protected void onResume() {
 		super.onResume();
 		scan_state = true;
-
 	}
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -800,16 +795,16 @@ public class Scan_beacon extends Activity {
 			try {
 				final Handler handler = new Handler();
 				set_gif_init(false);
-				view.view_this();
+				typegifview.view_this();
 				mScanning = false;
 				mBluetoothAdapter.stopLeScan(mLeScanCallback);
-
+				down_state = false;
 				handler.removeCallbacks(SCAN_BLE_Device);
 				timer.cancel();
 				time_scan = 0;
 				tag = 2;
 				find.setClickable(true);
-				dialog.dismiss();	
+				dialog.dismiss();
 				Log.d("dialog", "關閉dialog");
 			} catch (Exception e) {
 				Log.d("scan_state_error", "關閉dialog失敗");
@@ -819,7 +814,52 @@ public class Scan_beacon extends Activity {
 		} catch (Exception e) {
 			Log.d("onPause_ERROR", "" + e.getMessage());
 		}
-	
+
+	}
+
+	int down_questuin_flag = 0;
+	Runnable down_questuin;
+
+	private void down_questuin() {
+		final Handler handler = new Handler();
+		down_questuin_flag=0;
+		down_questuin = new Runnable() {
+			@Override
+			public void run() {
+				if (down_state) {
+					if (down_questuin_flag > 10) {
+						try {
+							find.setClickable(true);
+							Toast.makeText(getApplicationContext(), "下載失敗", Toast.LENGTH_SHORT).show();
+							set_gif_init(false);
+							typegifview.view_this();
+							down_state = false;
+							handler.removeCallbacks(down_questuin);
+						} catch (Exception e) {
+						}
+
+					}
+				}else{
+					try{
+						down_state=false;
+						find.setClickable(true);
+						handler.removeCallbacks(down_questuin);
+					}catch(Exception e){}
+				}
+			}
+		};
+		long period = 1000;
+
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				down_questuin_flag++;
+				handler.removeCallbacks(down_questuin);
+				handler.post(down_questuin);
+			}
+		}, 0, period);
+
 	}
 
 	private void scanLeDevice(final boolean enable) {
@@ -858,8 +898,9 @@ public class Scan_beacon extends Activity {
 							if (time_scan >= 7)
 								devic_listview.setVisibility(View.INVISIBLE);
 							if (time_scan >= 8) {
+								down_state = false;
 								set_gif_init(false);
-								view.view_this();
+								typegifview.view_this();
 								mScanning = false;
 								mBluetoothAdapter.stopLeScan(mLeScanCallback);
 								handler.removeCallbacks(SCAN_BLE_Device);
@@ -867,13 +908,17 @@ public class Scan_beacon extends Activity {
 								time_scan = 0;
 								tag = 2;
 								find.setClickable(true);
-								try{	handler_net.removeCallbacks(get_compamy_msg);
-								dialog.dismiss();}
-								catch(Exception e){}
+								try {
+									down_state = false;
+									handler_net
+											.removeCallbacks(get_compamy_msg);
+									dialog.dismiss();
+								} catch (Exception e) {
+								}
 							}
 						} else {
 							set_gif_init(false);
-							view.view_this();
+							typegifview.view_this();
 							mScanning = false;
 							mBluetoothAdapter.stopLeScan(mLeScanCallback);
 							handler.removeCallbacks(SCAN_BLE_Device);
@@ -1017,8 +1062,27 @@ public class Scan_beacon extends Activity {
 
 					if (check_rssi >= -99) {
 						if (check_ble_scan_colse_f) {
-							new Thread(get_compamy_msg).start();// 啟動執行序runnable
-							check_ble_scan_colse_f = false;
+							try {
+								Handler handler = new Handler();
+								time_scan = 0;
+								tag = 2;
+								mScanning = false;
+								mBluetoothAdapter.stopLeScan(mLeScanCallback);
+								handler.removeCallbacks(SCAN_BLE_Device);
+								timer.cancel();
+
+							} catch (Exception e) {
+							}
+							
+							Toast.makeText(getApplicationContext(),
+									"掃描到beacon資訊，下載問卷中。", Toast.LENGTH_SHORT)
+									.show();
+							Thread thread;
+							thread = new Thread(get_compamy_msg);// 啟動執行序runnable
+							down_state = true;
+							thread.start();
+							find.setClickable(false);
+							down_questuin();
 						}
 					}
 					viewHolder.devicedistance.setText("距離:"
@@ -1470,7 +1534,7 @@ public class Scan_beacon extends Activity {
 	}
 
 	/********************** get_compamy_msg ********************/
-	
+
 	public void RESCAN(View v) {
 
 		if (!mBluetoothAdapter.isEnabled()) {
@@ -1478,9 +1542,30 @@ public class Scan_beacon extends Activity {
 					BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
-			try{	handler_net.removeCallbacks(get_compamy_msg);}
-			catch(Exception e){}
 			try {
+				scan_state = false;
+				try {
+					set_gif_init(false);
+					typegifview.view_this();
+					final Handler handler = new Handler();
+					mScanning = false;
+
+					handler.removeCallbacks(SCAN_BLE_Device);
+					time_scan = 0;
+					tag = 2;
+					find.setClickable(true);
+					dialog.dismiss();
+					Log.d("dialog", "關閉dialog");
+				} catch (Exception e) {
+					Log.d("scan_state_error", "關閉dialog失敗");
+				}
+				scanLeDevice(false);
+				mLeDeviceListAdapter.clear();
+			} catch (Exception e) {
+				Log.d("onPause_ERROR", "" + e.getMessage());
+			}
+			try {
+				scan_state = true;
 				find.setClickable(false);
 				beacon_layout.setVisibility(View.VISIBLE);
 				check_ble_scan_colse_f = true;
@@ -1489,13 +1574,16 @@ public class Scan_beacon extends Activity {
 				scanLeDevice(true);
 				time_scan = 0;
 				set_gif_init(true);
-				view.setStart(R.raw.search);
+				typegifview.setSrc(R.drawable.search);
+				typegifview.setStart(R.raw.search);
 			} catch (Exception e) {
 				Toast.makeText(Scan_beacon.this, "連線失敗", Toast.LENGTH_SHORT)
 						.show();
 			}
-			try{	dialog.dismiss();}
-			catch(Exception e){}
+			try {
+				dialog.dismiss();
+			} catch (Exception e) {
+			}
 
 		}
 
@@ -1517,7 +1605,7 @@ public class Scan_beacon extends Activity {
 						question_background_layout.setVisibility(View.VISIBLE);
 						Questionnaire_layout.setVisibility(View.VISIBLE);
 						set_gif_init(false);
-						view.view_this();
+						typegifview.view_this();
 						back_imbut.setVisibility(View.INVISIBLE);
 						background_back_imbut.setVisibility(View.INVISIBLE);
 						question_data(company_data);
@@ -1548,7 +1636,7 @@ public class Scan_beacon extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								set_gif_init(false);
-								view.view_this();
+								typegifview.view_this();
 								beacon_layout.setVisibility(View.VISIBLE);
 								Questionnaire_layout.setVisibility(View.GONE);
 								Questionnaire_background_layout
@@ -1556,10 +1644,13 @@ public class Scan_beacon extends Activity {
 								mLeDeviceListAdapter.clear();
 								devic_listview.setAdapter(mLeDeviceListAdapter);
 								dialog.dismiss();
-								try{	handler_net.removeCallbacks(get_compamy_msg);}
-								catch(Exception e){}
-								
-								
+								try {
+									down_state = false;
+									handler_net
+											.removeCallbacks(get_compamy_msg);
+								} catch (Exception e) {
+								}
+
 							}
 						});
 		dialog = builder.show();
@@ -1589,10 +1680,12 @@ public class Scan_beacon extends Activity {
 											.setAdapter(mLeDeviceListAdapter);
 									choose_button_layout
 											.setVisibility(View.VISIBLE);
-									background_next_imbut.setVisibility(View.INVISIBLE);
+									background_next_imbut
+											.setVisibility(View.INVISIBLE);
 									next_imbut.setVisibility(View.INVISIBLE);
-									background_back_imbut.setVisibility(View.INVISIBLE);
-									back_imbut.setVisibility(View.INVISIBLE); 
+									background_back_imbut
+											.setVisibility(View.INVISIBLE);
+									back_imbut.setVisibility(View.INVISIBLE);
 								} catch (Exception e) {
 									Log.d("dialog_success_sure",
 											"" + e.getMessage());
@@ -1612,20 +1705,23 @@ public class Scan_beacon extends Activity {
 			question_background_tv = (TextView) findViewById(R.id.question_background_tv);
 			/********* 成功存進資料，換頁嘗試連線 *********/
 
-			if (company_data.equals("0"))
-				Toast.makeText(Scan_beacon.this, "資料庫未尋到此裝置的資料",
-						Toast.LENGTH_SHORT).show();
-			else if (company_data.equals("該公司可能尚未傳問卷題目到資料庫"))
-				Toast.makeText(Scan_beacon.this, company_data,
-						Toast.LENGTH_SHORT).show();
-			else {
-				scanLeDevice(false);
-				if (scan_state)
-					dialog_success();
+			if (down_state) {
+				if (company_data.equals("0"))
+					Toast.makeText(Scan_beacon.this, "資料庫未尋到此裝置的資料",
+							Toast.LENGTH_SHORT).show();
+				else if (company_data.equals("該公司可能尚未傳問卷題目到資料庫"))
+					Toast.makeText(Scan_beacon.this, company_data,
+							Toast.LENGTH_SHORT).show();
+				else {
+					//scanLeDevice(false);
+					if (scan_state)
+						dialog_success();
+				}
 			}
-
 			/********* 成功存進資料，換頁嘗試連線 *********/
-
+			down_state = false;
+			set_gif_init(false);
+			typegifview.view_this();
 		}
 	};
 	Handler get_compamy_msg_handler_Error = new Handler() {
@@ -1658,38 +1754,52 @@ public class Scan_beacon extends Activity {
 			//
 			// TODO: http request.
 			//
-			Message msg = new Message();
-			Bundle data = new Bundle();
-			msg.setData(data);
-			try {
-				// 連線到 url網址
-				HttpClient httpclient = new DefaultHttpClient();
-				HttpPost method = new HttpPost(URL);
+			if (down_state) {
 
-				// 傳值給PHP
-				List<NameValuePair> vars = new ArrayList<NameValuePair>();
-				vars.add(new BasicNameValuePair("mac", uuid));
-				// vars.add(new
-				// BasicNameValuePair("mac","E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"));
-				method.setEntity(new UrlEncodedFormEntity(vars, HTTP.UTF_8));
+				Message msg = new Message();
+				Bundle data = new Bundle();
+				msg.setData(data);
+				try {
+					// 連線到 url網址
+					HttpClient httpclient = new DefaultHttpClient();
+					HttpPost method = new HttpPost(URL);
 
-				// 接收PHP回傳的資料
-				HttpResponse response = httpclient.execute(method);
-				HttpEntity entity = response.getEntity();
+					// 傳值給PHP
+					List<NameValuePair> vars = new ArrayList<NameValuePair>();
+					vars.add(new BasicNameValuePair("mac", uuid));
+					// vars.add(new
+					// BasicNameValuePair("mac","E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"));
+					method.setEntity(new UrlEncodedFormEntity(vars, HTTP.UTF_8));
 
-				if (entity != null) {
-					data.putString("key", EntityUtils.toString(entity, "utf-8"));// 如果成功將網頁內容存入key
-					get_compamy_msg_handler_Success.sendMessage(msg);
+					// 接收PHP回傳的資料
+					HttpResponse response = httpclient.execute(method);
+					HttpEntity entity = response.getEntity();
 
-				} else {
-					data.putString("key", "無資料");
-					get_compamy_msg_handler_Nodata.sendMessage(msg);
+					if (entity != null) {
+						data.putString("key",
+								EntityUtils.toString(entity, "utf-8"));// 如果成功將網頁內容存入key
+						get_compamy_msg_handler_Success.sendMessage(msg);
+
+					} else {
+						data.putString("key", "無資料");
+						get_compamy_msg_handler_Nodata.sendMessage(msg);
+					}
+				} catch (Exception e) {
+					data.putString("key", "連線失敗1");
+					get_compamy_msg_handler_Error.sendMessage(msg);
+					try {
+						down_state = false;
+						handler_net.removeCallbacks(get_compamy_msg);
+					} catch (Exception ex) {
+					}
 				}
-			} catch (Exception e) {
-				data.putString("key", "連線失敗1");
-				get_compamy_msg_handler_Error.sendMessage(msg);
+			} else {
+				try {
+					handler_net.removeCallbacks(get_compamy_msg);
+				} catch (Exception e) {
+				}
 			}
-			
+
 		}
 	};
 
@@ -1766,7 +1876,6 @@ public class Scan_beacon extends Activity {
 	/********************** get_compamy_msg ********************/
 
 	/******************************************* 檔案建立 *******************************************/
-	
 
 	// 寫入資料
 	private void writeToFile(File fout, String data) {

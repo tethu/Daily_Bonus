@@ -76,12 +76,13 @@ containing a value of this type.
         public static final int icon_survey_off=0x7f020012;
         public static final int icon_survey_on=0x7f020013;
         public static final int icon_teaway_small=0x7f020014;
-        public static final int nodata=0x7f020015;
-        public static final int notification=0x7f020016;
-        public static final int question_background=0x7f020017;
-        public static final int search=0x7f020018;
-        public static final int sign_1=0x7f020019;
-        public static final int sign_2=0x7f02001a;
+        public static final int magic=0x7f020015;
+        public static final int nodata=0x7f020016;
+        public static final int notification=0x7f020017;
+        public static final int question_background=0x7f020018;
+        public static final int search=0x7f020019;
+        public static final int sign_1=0x7f02001a;
+        public static final int sign_2=0x7f02001b;
     }
     public static final class id {
         public static final int ImageView01=0x7f0a0026;
@@ -109,6 +110,8 @@ containing a value of this type.
         public static final int button_cut1_layout=0x7f0a004c;
         public static final int button_cut2_layout=0x7f0a0054;
         public static final int button_layout=0x7f0a004d;
+        public static final int change_rss_layout=0x7f0a0062;
+        public static final int change_rssi_but=0x7f0a0063;
         public static final int choose1=0x7f0a004e;
         public static final int choose2=0x7f0a004f;
         public static final int choose3=0x7f0a0050;
@@ -149,11 +152,11 @@ containing a value of this type.
         public static final int imageView1=0x7f0a003a;
         public static final int imageView2=0x7f0a0047;
         public static final int list_database_data=0x7f0a0056;
-        public static final int menu_connect=0x7f0a0065;
-        public static final int menu_disconnect=0x7f0a0066;
-        public static final int menu_refresh=0x7f0a0064;
-        public static final int menu_scan=0x7f0a0067;
-        public static final int menu_stop=0x7f0a0068;
+        public static final int menu_connect=0x7f0a0069;
+        public static final int menu_disconnect=0x7f0a006a;
+        public static final int menu_refresh=0x7f0a0068;
+        public static final int menu_scan=0x7f0a006b;
+        public static final int menu_stop=0x7f0a006c;
         public static final int next_imbut=0x7f0a0042;
         public static final int offsetting_dialog_title_layout=0x7f0a0057;
         public static final int question_background_cut1_layout=0x7f0a0025;
@@ -172,7 +175,9 @@ containing a value of this type.
         public static final int question_tv_layout=0x7f0a0049;
         public static final int scan_list=0x7f0a0009;
         public static final int tableRow1=0x7f0a000d;
-        public static final int time_tv=0x7f0a0063;
+        public static final int textView1=0x7f0a0064;
+        public static final int textView2=0x7f0a0061;
+        public static final int time_tv=0x7f0a0067;
         public static final int title_background_cut1_layout=0x7f0a0016;
         public static final int title_background_cut2_layout=0x7f0a001b;
         public static final int title_background_layout=0x7f0a0015;
@@ -186,8 +191,8 @@ containing a value of this type.
         public static final int top_cut2_layout=0x7f0a0043;
         public static final int top_layout=0x7f0a003e;
         public static final int tv=0x7f0a003b;
-        public static final int txtName=0x7f0a0061;
-        public static final int txtdate=0x7f0a0062;
+        public static final int txtName=0x7f0a0065;
+        public static final int txtdate=0x7f0a0066;
         public static final int view_flipper=0x7f0a0034;
     }
     public static final class layout {

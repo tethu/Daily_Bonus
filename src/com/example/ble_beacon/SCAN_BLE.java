@@ -26,7 +26,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -57,6 +56,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -895,7 +895,7 @@ public class SCAN_BLE extends Activity {
 						} catch (Exception e) {
 						}
 						try {
-							action_in = new Queue_rssi(-70, 0);
+							action_in = new Queue_rssi(rssi_Condition, 0);
 							sucess_flag = false;
 							Thread.sleep(500);
 							TextView svan_tv = (TextView) findViewById(R.id.Scan_device_tv);
@@ -928,13 +928,29 @@ public class SCAN_BLE extends Activity {
 	AlertDialog dialog;
 	int time_sec = 10;
 	private TypegifView view;
+	int rssi_Condition=-65;
+	
+	
+	public void scan_device_set(View v){
+		Button Change_Condition_But = (Button) (v.findViewById(R.id.change_rssi_but));
+		Change_Condition_But.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				rssi_Condition=-75;
+			}
+			
+		});
+		
+	}
 	public void use_offsetting_dialog() {
 		AlertDialog.Builder use_offsetting_dialog_builder = new AlertDialog.Builder(
 				SCAN_BLE.this);
 		LayoutInflater inflater = LayoutInflater.from(SCAN_BLE.this);
 		final View v = inflater.inflate(R.layout.scan_device_dialog, null);
 		view=(TypegifView)v.findViewById(R.id.gifView);
-		
+		scan_device_set(v);
 	
 		use_offsetting_dialog_builder
 				.setView(v)
@@ -1005,7 +1021,7 @@ public class SCAN_BLE extends Activity {
 		dialog.dismiss();
 		dialog_suc();
 		dis_state = false;
-		action_out = new Queue_rssi(-75, 1);
+		action_out = new Queue_rssi(rssi_Condition-10, 1);
 		runnable_time_success = new Runnable() {
 			@Override
 			public void run() {
@@ -1171,7 +1187,7 @@ public class SCAN_BLE extends Activity {
 	}
 
 	public void rescan() {
-		action_in = new Queue_rssi(-70, 0);
+		action_in = new Queue_rssi(rssi_Condition, 0);
 		if (!sucess_flag) {
 			TextView svan_tv = (TextView) findViewById(R.id.Scan_device_tv);
 			// LinearLayout beacon_layout = (LinearLayout)
